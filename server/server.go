@@ -9,6 +9,7 @@ import (
 
 const port = 8080
 
+// Serve do router mapping and start http server
 func Serve() {
 	http.HandleFunc("/", handleRoot)
 
