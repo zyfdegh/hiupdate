@@ -1,17 +1,17 @@
 package util
 
-func struct2bytes(){
+func struct2bytes() {
 
 }
 
-func bytes2struct(){
+func bytes2struct() {
 
 }
 
-func bytes2string(){
+func bytes2string() {
 
 }
 
-func string2bytes(){
+func string2bytes() {
 
 }
