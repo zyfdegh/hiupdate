@@ -5,4 +5,6 @@ go:
 
 install:
         - go vet ./...
+        - ./test.sh
         - ./build.sh
+
