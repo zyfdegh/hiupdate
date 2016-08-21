@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/zyfdegh/startup-update/server"
+	"github.com/zyfdegh/hiupdate/server"
 )
 
 func main() {

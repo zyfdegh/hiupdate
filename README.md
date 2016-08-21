@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/zyfdegh/startup-update.svg)](https://travis-ci.org/zyfdegh/startup-update)
-[![Go Report](https://goreportcard.com/badge/github.com/zyfdegh/startup-update)](https://goreportcard.com/report/github.com/zyfdegh/startup-update)
+[![Build Status](https://travis-ci.org/zyfdegh/hiupdate.svg)](https://travis-ci.org/zyfdegh/hiupdate)
+[![Go Report](https://goreportcard.com/badge/github.com/zyfdegh/hiupdate)](https://goreportcard.com/report/github.com/zyfdegh/hiupdate)
 
-# startup-update
-Startup update is a golang backend web project, which is used locally to record daily startup meeting.
+# hiupdate
+hiupdate is a golang backend web project, which is used locally to record daily startup meeting.
