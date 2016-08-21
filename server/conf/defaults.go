@@ -4,5 +4,5 @@ var defaultOptions = Options{
 
 	Port: 8080,
 
-	DB: "/root/unqlite.db",
+	DBFile: "./unqlite.db",
 }

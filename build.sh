@@ -1,6 +1,8 @@
 #!/bin/bash
 
+go get github.com/svkior/unqlitego
 go get github.com/hashicorp/hcl
+go get github.com/bmizerany/assert
 
 rm -rf bin/
 go build -o bin/hiupdate
