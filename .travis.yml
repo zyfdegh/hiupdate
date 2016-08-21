@@ -4,7 +4,8 @@ go:
         - 1.6
 
 install:
-        - go vet ./...
+        - ./godep.sh
         - ./test.sh
         - ./build.sh
+        - ./run.sh
 
