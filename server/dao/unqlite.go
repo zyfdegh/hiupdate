@@ -39,13 +39,13 @@ func (u *Unqlite) Insert(k []byte, v []byte) error {
 	return u.Update(k, v)
 }
 
-func (u *Unqlite) Query(k []byte) *[]byte {
+func (u *Unqlite) Query(k []byte) (*[]byte, error) {
 	bytes, err := u.db.Fetch(k)
 	if err != nil {
 		log.Printf("unqlite fetch error: %v", err)
-		return nil
+		return nil, err
 	}
-	return &bytes
+	return &bytes, nil
 }
 
 func (u *Unqlite) Update(k []byte, v []byte) error {

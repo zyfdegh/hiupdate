@@ -34,10 +34,41 @@ func handleRoot(w http.ResponseWriter, req *http.Request) {
 }
 
 func handleUpdate(w http.ResponseWriter, req *http.Request) {
-	if req.Method != http.MethodPut {
+	switch req.Method {
+	case http.MethodGet:
+		getUpdate(w, req)
+	case http.MethodPut:
+		putUpdate(w, req)
+	default:
 		io.WriteString(w, "method not allowed")
+	}
+	return
+}
+
+// GET /update?name="Zhang"
+func getUpdate(w http.ResponseWriter, req *http.Request) {
+	var name = req.FormValue("name")
+	var date = req.FormValue("date")
+	fmt.Println(name)
+	fmt.Println(date)
+	resp, err := service.GetUpdate(name, date)
+	if err != nil {
+		log.Printf("serve get update request error: %v", err)
 		return
 	}
+	body, err := json.Marshal(resp)
+	if err != nil {
+		log.Printf("marshal object error: %v", err)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	io.WriteString(w, string(body))
+}
+
+// PUT /update
+// Body entity.ReqUpdate
+func putUpdate(w http.ResponseWriter, req *http.Request) {
 	var reqUpdate = &entity.ReqUpdate{}
 	data, err := ioutil.ReadAll(req.Body)
 	if err != nil {
@@ -50,9 +81,9 @@ func handleUpdate(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	respUpdate, err := service.DoUpdate(reqUpdate)
+	respUpdate, err := service.PutUpdate(reqUpdate)
 	if err != nil {
-		log.Printf("serve update request error: %v", err)
+		log.Printf("serve put update request error: %v", err)
 		return
 	}
 	body, err := json.Marshal(respUpdate)
