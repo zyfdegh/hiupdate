@@ -1,6 +1,7 @@
 package util
 
 import (
+	"log"
 	"testing"
 	"time"
 
@@ -32,7 +33,7 @@ func TestGetToday(t *testing.T) {
 	var cases = []struct {
 		expect string
 	}{
-		{"20160822"},
+		{"20160823"},
 	}
 
 	for _, c := range cases {
@@ -48,12 +49,34 @@ func TestGetYesterday(t *testing.T) {
 	var cases = []struct {
 		expect string
 	}{
-		{"20160821"},
+		{"20160822"},
 	}
 
 	for _, c := range cases {
 		//call
 		got := GetYesterday()
+		//assert
+		assert.Equal(t, c.expect, got)
+	}
+}
+
+func TestGetWeekday(t *testing.T) {
+	var cases = []struct {
+		date   string
+		expect string
+	}{
+		{"20110823", "二"},
+		{"20160821", "日"},
+		{"20181212", "三"},
+	}
+
+	for _, c := range cases {
+		//call
+		got, err := GetWeekday(c.date)
+		if err != nil {
+			log.Println(err)
+			t.Fail()
+		}
 		//assert
 		assert.Equal(t, c.expect, got)
 	}

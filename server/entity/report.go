@@ -3,6 +3,6 @@ package entity
 type Report struct {
 	Title   string   `json:"title"`
 	Date    string   `json:"date"`
-	Week    string   `json:"week"`
+	Weekday string   `json:"weekday"`
 	Records []Record `json:"records"`
 }

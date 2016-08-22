@@ -11,7 +11,6 @@ import (
 	"github.com/zyfdegh/hiupdate/server/conf"
 	"github.com/zyfdegh/hiupdate/server/entity"
 	"github.com/zyfdegh/hiupdate/server/service"
-	"github.com/zyfdegh/hiupdate/server/util"
 )
 
 var port = conf.OptionsReady.Port
@@ -83,16 +82,6 @@ func putUpdate(w http.ResponseWriter, req *http.Request) {
 	}
 
 	resp, err := service.PutUpdate(reqUpdate)
-	if resp.Success {
-		fmt.Println("********")
-		fmt.Printf("%s\n", resp.Data.Person.Name)
-		fmt.Printf("%s\n", resp.Data.Content.Done)
-		fmt.Printf("%s\n", resp.Data.Content.Todo)
-		fmt.Printf("%s\n", resp.Data.Content.Issue)
-	} else {
-		util.PrintPretty(resp, "failed")
-	}
-
 	if err != nil {
 		log.Printf("serve put update request error: %v", err)
 		return
