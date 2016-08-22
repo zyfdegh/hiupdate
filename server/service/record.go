@@ -73,6 +73,7 @@ func PutUpdate(req *entity.ReqUpdate) (resp *entity.RespPutUpdate, err error) {
 
 	record := &entity.Record{}
 	record.Person.Name = req.Name
+	record.Content.Done = req.Done
 	record.Content.Todo = req.Todo
 	record.Content.Issue = req.Issue
 	date := util.GetToday()
