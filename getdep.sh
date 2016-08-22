@@ -1,6 +1,5 @@
 #!/bin/sh
 
-go get github.com/svkior/unqlitego
-go get github.com/hashicorp/hcl
-go get github.com/bmizerany/assert
-
+go get -v -u github.com/svkior/unqlitego
+go get -v -u github.com/hashicorp/hcl
+go get -v -u github.com/bmizerany/assert

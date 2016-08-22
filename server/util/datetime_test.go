@@ -9,15 +9,14 @@ import (
 
 // modify date before testing
 func TestGetDate(t *testing.T) {
-	t1, err := time.Parse(time.RFC3339, "2006-01-02T15:04:05Z07:00")
-	if err != nil {
-		t.Fail()
-	}
+	t1, _ := time.Parse(time.RFC3339, "2008-09-08T22:47:31+08:00")
+	t2, _ := time.Parse(time.RFC3339, "2006-01-02T15:04:05-07:00")
 	var cases = []struct {
 		t      time.Time
 		expect string
 	}{
-		{t1, "20060102"},
+		{t1, "20080908"},
+		{t2, "20060102"},
 	}
 
 	for _, c := range cases {
