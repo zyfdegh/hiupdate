@@ -13,9 +13,7 @@
 <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 <script>
-	var host = "localhost";
-	var port = "8080";
-	var baseUrl ="http://"+host+":"+port;
+	var baseUrl ="http://"+location.host;
 	$(document).ready(function() {
 		// query
 		var name=document.getElementById("s_name").value
