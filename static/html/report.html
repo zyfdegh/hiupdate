@@ -1,0 +1,37 @@
+<html>
+
+<script>
+	var baseUrl ="http://"+location.host;
+	$(document).ready(function() {
+		// report
+		$.ajax({
+			var date="20160823"
+			url:baseUrl+"/report/",
+			type:'GET',
+			timeout : 5000,
+			data: {date:date},
+			contentType: "application/json",
+			dataType: 'text',
+			success: function (result) {
+            	console.log(JSON.stringify(result))
+           	},
+            error: function () {
+            	console.log(JSON.stringify(result))
+			}
+        });
+	});
+</script>
+
+<div>
+	<div>
+		<p>Report:</p>
+	</div>
+	<div id="hint" style="display: none;">
+		<p id="t_hint">No hint</p>
+	</div>
+	<div>
+		<button id="copy" class="btn btn-large">Copy</button>
+	</div>
+</div>
+
+</html>
