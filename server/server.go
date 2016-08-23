@@ -81,6 +81,13 @@ func putUpdate(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	fmt.Println("/**********")
+	fmt.Printf("Name: %s\n", reqUpdate.Name)
+	fmt.Printf("Done: %s\n", reqUpdate.Done)
+	fmt.Printf("Todo: %s\n", reqUpdate.Todo)
+	fmt.Printf("Issue: %s\n", reqUpdate.Issue)
+	fmt.Println("**********/")
+
 	resp, err := service.PutUpdate(reqUpdate)
 	if err != nil {
 		log.Printf("serve put update request error: %v", err)
