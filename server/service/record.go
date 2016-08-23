@@ -74,9 +74,6 @@ func checkReqPutUpdate(req *entity.ReqUpdate) string {
 	if len(strings.TrimSpace(req.Todo)) == 0 {
 		return "todo not set"
 	}
-	if len(strings.TrimSpace(req.Issue)) == 0 {
-		return "issue not set"
-	}
 	return ""
 }
 
