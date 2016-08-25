@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/zyfdegh/hiupdate/server/entity"
 	"github.com/zyfdegh/hiupdate/server/util"
@@ -28,6 +29,12 @@ func GetReport(date string) (report *entity.Report, err error) {
 	return report, nil
 }
 
+// GetReportText return report as string
+func GetReportText(date string) (report string, err error) {
+	r, _ := GetReport(date)
+	return ConvertText(*r)
+}
+
 // ConvertText convert report as text file
 func ConvertText(report entity.Report) (text string, err error) {
 	var buf bytes.Buffer
@@ -37,13 +44,15 @@ func ConvertText(report entity.Report) (text string, err error) {
 		return "", err
 	}
 	buf.WriteString(fmt.Sprintf("# %s 星期%s %s", report.Date, week, report.Title))
+	number := 1
 	for _, record := range report.Records {
-		number := 1
 		buf.WriteString("\n")
 		buf.WriteString(fmt.Sprintf("%d. %s\n", number, record.Person.Name))
-		buf.WriteString(fmt.Sprintf("昨天: %s\n", number, record.Content.Done))
-		buf.WriteString(fmt.Sprintf("今天: %s\n", number, record.Content.Todo))
-		buf.WriteString(fmt.Sprintf("问题: %s\n", number, record.Content.Issue))
+		buf.WriteString(fmt.Sprintf("昨天: %s\n", record.Content.Done))
+		buf.WriteString(fmt.Sprintf("今天: %s\n", record.Content.Todo))
+		if len(strings.TrimSpace(record.Content.Issue)) > 0 {
+			buf.WriteString(fmt.Sprintf("问题: %s\n", record.Content.Issue))
+		}
 		number++
 	}
 	buf.WriteString("\n")

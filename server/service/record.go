@@ -12,7 +12,6 @@ import (
 
 // GetRecords returns all records of a day
 func GetRecords(date string) (records []entity.Record, err error) {
-	records = make([]entity.Record, 20)
 	persons, err := GetAllPersons()
 	if err != nil {
 		log.Printf("service get all persons error: %v", err)
@@ -25,7 +24,9 @@ func GetRecords(date string) (records []entity.Record, err error) {
 			log.Printf("service query record error: %v", e)
 			continue
 		}
-		records = append(records, *record)
+		if record != nil {
+			records = append(records, *record)
+		}
 	}
 	return records, nil
 }

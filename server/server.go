@@ -21,6 +21,7 @@ func Serve() {
 
 	http.HandleFunc("/", handleRoot)
 	http.HandleFunc("/update/", handleUpdate)
+	http.HandleFunc("/report/", handleReport)
 
 	s := &http.Server{Addr: fmt.Sprintf(":%d", port)}
 	log.Printf("server start on localhost:%d", port)
@@ -94,6 +95,36 @@ func putUpdate(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	body, err := json.Marshal(resp)
+	if err != nil {
+		log.Printf("marshal object error: %v", err)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	io.WriteString(w, string(body))
+	return
+}
+
+// GET /report?date=20160825
+func handleReport(w http.ResponseWriter, req *http.Request) {
+	switch req.Method {
+	case http.MethodGet:
+		getReport(w, req)
+	default:
+		io.WriteString(w, "method not allowed")
+	}
+	return
+}
+
+func getReport(w http.ResponseWriter, req *http.Request) {
+	var date = req.FormValue("date")
+	report, err := service.GetReportText(date)
+	fmt.Println(report)
+	if err != nil {
+		log.Printf("serve get report error: %v", err)
+		return
+	}
+	body, err := json.Marshal(report)
 	if err != nil {
 		log.Printf("marshal object error: %v", err)
 		return
