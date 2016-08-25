@@ -33,7 +33,7 @@ func TestGetToday(t *testing.T) {
 	var cases = []struct {
 		expect string
 	}{
-		{"20160823"},
+		{"20160825"},
 	}
 
 	for _, c := range cases {
@@ -49,7 +49,7 @@ func TestGetYesterday(t *testing.T) {
 	var cases = []struct {
 		expect string
 	}{
-		{"20160822"},
+		{"20160824"},
 	}
 
 	for _, c := range cases {
