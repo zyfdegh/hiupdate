@@ -8,22 +8,45 @@
 	var baseUrl ="http://"+location.host;
 	$(document).ready(function() {
 		// report
-		var date="20160825";
-		$.ajax({
-			url:baseUrl+"/report/",
-			type:'GET',
-			timeout : 5000,
-			data: {date:date},
-			contentType: "application/json",
-			dataType: 'text',
-			success: function (result) {
-				document.getElementById("t_report").value = result
-           	},
-            error: function () {
-            	console.log(JSON.stringify(result))
-			}
-        });
+		$("#btn_gen").on("click", function() {
+			var yyyy=document.cal.YYYY.value;
+			var mm=addZero(document.cal.MM.value);
+			var dd=addZero(document.cal.DD.value);
+			var date = yyyy+mm+dd;
+			$.ajax({
+				url:baseUrl+"/report/",
+				type:'GET',
+				timeout : 5000,
+				data: {date:date},
+				contentType: "application/json",
+				dataType: 'text',
+				success: function (result) {
+					document.getElementById("t_report").value = result
+		          	},
+		           error: function () {
+		           	console.log(JSON.stringify(result))
+				}
+		    });
+		});
+		
+		// copy
+		$("#btn_copy").on("click", function() {
+			copy("t_report");
+		});
 	});
+	
+	// 8 -> 08
+	function addZero(str){
+	    str ='00'+str;
+	    return str.substring(str.length-2,str.length);
+	}
+	
+	// copy
+	function copy(id){
+		var e=document.getElementById(id);
+        e.select();
+        document.execCommand("Copy");
+	}
 </script>
 
 <div class="container">
@@ -42,7 +65,8 @@
 	  </select>
 	</form>
 	<div>
-		<button id="btn_copy" class="btn btn-large">复制</button>
+		<button id="btn_gen" class="btn btn-large">生成</button>
+		<button id="btn_copy" class="btn btn-large">复制全部</button>
 	</div>
 	<div>
 		<textarea id="t_report" class="form-control" rows="30">Report</textarea>
