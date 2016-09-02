@@ -50,6 +50,8 @@ func GetWeekday(date string) (string, error) {
 	return weekdays[int(t.Weekday())], nil
 }
 
+// SplitDate split date to year, month and day.
+// 20160902 -> 2016 09 02
 func SplitDate(date string) (yyyy, mm, dd string) {
 	if len(date) != 8 {
 		return

@@ -43,7 +43,8 @@ func ConvertText(report entity.Report) (text string, err error) {
 		log.Printf("get weekday error: %v", err)
 		return "", err
 	}
-	buf.WriteString(fmt.Sprintf("# %s 星期%s %s", report.Date, week, report.Title))
+	buf.WriteString(fmt.Sprintf("# %s 星期%s %s", util.FormatDate(report.Date, "-"), week, report.Title))
+	buf.WriteString("\n")
 	number := 1
 	for _, record := range report.Records {
 		buf.WriteString("\n")
