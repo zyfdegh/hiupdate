@@ -31,9 +31,7 @@ func GetWeekday(date string) (string, error) {
 	if len(date) != 8 {
 		return "", errors.New("invalid date format")
 	}
-	y := []byte(date)[0:4]
-	m := []byte(date)[4:6]
-	d := []byte(date)[6:8]
+	y, m, d := SplitDate(date)
 	// RFC3339     = "2006-01-02T15:04:05Z07:00"
 	rfc := fmt.Sprintf("%s-%s-%sT08:00:00+08:00", y, m, d)
 	t, err := time.Parse(time.RFC3339, rfc)

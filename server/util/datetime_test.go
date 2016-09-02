@@ -28,38 +28,6 @@ func TestGetDate(t *testing.T) {
 	}
 }
 
-// modify date before testing
-func TestGetToday(t *testing.T) {
-	var cases = []struct {
-		expect string
-	}{
-		{"20160825"},
-	}
-
-	for _, c := range cases {
-		//call
-		got := GetToday()
-		//assert
-		assert.Equal(t, c.expect, got)
-	}
-}
-
-// modify date before testing
-func TestGetYesterday(t *testing.T) {
-	var cases = []struct {
-		expect string
-	}{
-		{"20160824"},
-	}
-
-	for _, c := range cases {
-		//call
-		got := GetYesterday()
-		//assert
-		assert.Equal(t, c.expect, got)
-	}
-}
-
 func TestGetWeekday(t *testing.T) {
 	var cases = []struct {
 		date   string
