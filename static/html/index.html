@@ -22,7 +22,7 @@
 		// query
 		var name=document.getElementById("s_name").value
 		$.ajax({
-			url:baseUrl+"/update/",
+			url:baseUrl+"/record/",
 			type:'GET',
 			timeout : 5000,
 			data: {name:name},
@@ -35,7 +35,7 @@
             	console.log(JSON.stringify(result))
 			}
         });
-		// update
+		// PUT /record
 		$("#btn_update").on("click", function() {
 			var name=document.getElementById("s_name").value
 			var done=document.getElementById("box_done").value
@@ -43,7 +43,7 @@
 			var issue=document.getElementById("box_issue").value
 			var dataObject={"name":name,"done":done,"todo":todo,"issue":issue}
 			$.ajax({
-				url:baseUrl+"/update/",
+				url:baseUrl+"/record/",
 				type:'PUT',
 				timeout : 5000,
 				data: JSON.stringify(dataObject),

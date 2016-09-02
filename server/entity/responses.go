@@ -6,12 +6,12 @@ type Resp struct {
 	Errmsg  string `json:"errmsg"`
 }
 
-type RespPutUpdate struct {
+type RespPutRecord struct {
 	Resp
 	Data Record `json:"data"`
 }
 
-type RespGetUpdate struct {
+type RespGetRecord struct {
 	Resp
 	Data Record `json:"data"`
 }

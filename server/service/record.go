@@ -31,11 +31,11 @@ func GetRecords(date string) (records []entity.Record, err error) {
 	return records, nil
 }
 
-func GetYesterdayRecord(name string) (resp *entity.RespGetUpdate, err error) {
-	return GetUpdate(name, util.GetYesterday())
+func GetYesterdayRecord(name string) (resp *entity.RespGetRecord, err error) {
+	return GetRecord(name, util.GetYesterday())
 }
 
-func checkReqGetUpdate(name, date string) (errmsg string) {
+func checkReqGetRecord(name, date string) (errmsg string) {
 	if len(strings.TrimSpace(name)) == 0 {
 		return "name not set"
 	}
@@ -45,9 +45,9 @@ func checkReqGetUpdate(name, date string) (errmsg string) {
 	return ""
 }
 
-func GetUpdate(name, date string) (resp *entity.RespGetUpdate, err error) {
-	resp = &entity.RespGetUpdate{}
-	errmsg := checkReqGetUpdate(name, date)
+func GetRecord(name, date string) (resp *entity.RespGetRecord, err error) {
+	resp = &entity.RespGetRecord{}
+	errmsg := checkReqGetRecord(name, date)
 	if errmsg != "" {
 		resp.Success = false
 		resp.ErrNo = http.StatusBadRequest
@@ -68,7 +68,7 @@ func GetUpdate(name, date string) (resp *entity.RespGetUpdate, err error) {
 	return
 }
 
-func checkReqPutUpdate(req *entity.ReqUpdate) string {
+func checkReqPutRecord(req *entity.ReqRecord) string {
 	if len(strings.TrimSpace(req.Name)) == 0 {
 		return "name not set"
 	}
@@ -78,10 +78,10 @@ func checkReqPutUpdate(req *entity.ReqUpdate) string {
 	return ""
 }
 
-func PutUpdate(req *entity.ReqUpdate) (resp *entity.RespPutUpdate, err error) {
-	resp = &entity.RespPutUpdate{}
+func PutRecord(req *entity.ReqRecord) (resp *entity.RespPutRecord, err error) {
+	resp = &entity.RespPutRecord{}
 
-	errmsg := checkReqPutUpdate(req)
+	errmsg := checkReqPutRecord(req)
 	if errmsg != "" {
 		resp.Success = false
 		resp.ErrNo = http.StatusBadRequest

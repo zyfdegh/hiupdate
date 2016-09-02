@@ -1,7 +1,7 @@
 package entity
 
-// Req to /update
-type ReqUpdate struct {
+// Req to /record
+type ReqRecord struct {
 	Name  string `json:"name"`
 	Done  string `json:"done"`
 	Todo  string `json:"todo"`
