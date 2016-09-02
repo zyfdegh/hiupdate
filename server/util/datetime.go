@@ -29,7 +29,6 @@ func GetYesterday() string {
 func GetWeekday(date string) (string, error) {
 	// Convert date to RFC3339
 	if len(date) != 8 {
-		fmt.Println("1")
 		return "", errors.New("invalid date format")
 	}
 	y := []byte(date)[0:4]
@@ -39,7 +38,6 @@ func GetWeekday(date string) (string, error) {
 	rfc := fmt.Sprintf("%s-%s-%sT08:00:00+08:00", y, m, d)
 	t, err := time.Parse(time.RFC3339, rfc)
 	if err != nil {
-		fmt.Println("2")
 		return "", err
 	}
 	var weekdays = map[int]string{
@@ -51,6 +49,27 @@ func GetWeekday(date string) (string, error) {
 		5: "五",
 		6: "六",
 	}
-	fmt.Println("3")
 	return weekdays[int(t.Weekday())], nil
+}
+
+func SplitDate(date string) (yyyy, mm, dd string) {
+	if len(date) != 8 {
+		return
+	}
+	yyyy = string([]byte(date)[0:4])
+	mm = string([]byte(date)[4:6])
+	dd = string([]byte(date)[6:8])
+	return
+}
+
+// FormatDate format date with seperator
+// 20160902 -> 2016-09-02
+func FormatDate(date string, seperator string) string {
+	if len(date) != 8 {
+		return ""
+	}
+
+	y, m, d := SplitDate(date)
+
+	return strings.Join([]string{y, m, d}, seperator)
 }

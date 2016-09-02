@@ -81,3 +81,44 @@ func TestGetWeekday(t *testing.T) {
 		assert.Equal(t, c.expect, got)
 	}
 }
+
+func TestSplitDate(t *testing.T) {
+	var cases = []struct {
+		date        string
+		expect_yyyy string
+		expect_mm   string
+		expect_dd   string
+	}{
+		{"20110823", "2011", "08", "23"},
+		{"20160821", "2016", "08", "21"},
+		{"20181212", "2018", "12", "12"},
+	}
+
+	for _, c := range cases {
+		//call
+		got_yyyy, got_mm, got_dd := SplitDate(c.date)
+		//assert
+		assert.Equal(t, c.expect_yyyy, got_yyyy)
+		assert.Equal(t, c.expect_mm, got_mm)
+		assert.Equal(t, c.expect_dd, got_dd)
+	}
+}
+
+func TestFormatDate(t *testing.T) {
+	var cases = []struct {
+		date      string
+		seperator string
+		expect    string
+	}{
+		{"20110823", "-", "2011-08-23"},
+		{"20160821", ",", "2016,08,21"},
+		{"20181212", ".", "2018.12.12"},
+	}
+
+	for _, c := range cases {
+		//call
+		got := FormatDate(c.date, c.seperator)
+		//assert
+		assert.Equal(t, c.expect, got)
+	}
+}
