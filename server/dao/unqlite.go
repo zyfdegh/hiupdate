@@ -9,10 +9,12 @@ import (
 )
 
 var (
+	// UnqliteReady is the connected unqlite database instance
 	UnqliteReady *Unqlite
 	once         sync.Once
 )
 
+// Unqlite contains unqlite database instance
 type Unqlite struct {
 	db *unqlitego.Database
 }
@@ -31,14 +33,17 @@ func init() {
 	})
 }
 
+// NewUnqlite returns new unqlite struct
 func NewUnqlite() *Unqlite {
 	return &Unqlite{}
 }
 
+// Insert store data to unqlite, same as update
 func (u *Unqlite) Insert(k []byte, v []byte) error {
 	return u.Update(k, v)
 }
 
+// Query query data from unqlite
 func (u *Unqlite) Query(k []byte) (*[]byte, error) {
 	bytes, err := u.db.Fetch(k)
 	if err != nil {
@@ -48,6 +53,7 @@ func (u *Unqlite) Query(k []byte) (*[]byte, error) {
 	return &bytes, nil
 }
 
+// Update store data to unqlite
 func (u *Unqlite) Update(k []byte, v []byte) error {
 	err := u.db.Store(k, v)
 	if err != nil {
@@ -58,6 +64,7 @@ func (u *Unqlite) Update(k []byte, v []byte) error {
 	return nil
 }
 
+// Delete remove data from unqlite
 func (u *Unqlite) Delete(k []byte, v []byte) error {
 	err := u.db.Delete(k)
 	if err != nil {

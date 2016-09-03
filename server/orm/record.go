@@ -8,6 +8,7 @@ import (
 	"github.com/zyfdegh/hiupdate/server/entity"
 )
 
+// QueryRecord query record from unqlite with 'id' and return as entity
 func QueryRecord(id string) (record *entity.Record, err error) {
 	record = &entity.Record{}
 	data, err := dao.UnqliteReady.Query([]byte(id))
@@ -23,6 +24,7 @@ func QueryRecord(id string) (record *entity.Record, err error) {
 	return
 }
 
+// UpdateRecord updates a record in unqlite
 func UpdateRecord(record *entity.Record) (err error) {
 	data, err := json.Marshal(record)
 	if err != nil {

@@ -15,17 +15,17 @@ func GetDate(t time.Time) string {
 	return strings.Join(tmp, "")
 }
 
-// GetDate returns today's date in "20160822"
+// GetToday returns today's date in "20160822"
 func GetToday() string {
 	return GetDate(time.Now())
 }
 
-// GetDate returns yesterday's date in "20160821"
+// GetYesterday returns yesterday's date in "20160821"
 func GetYesterday() string {
 	return GetDate(time.Now().Add(-time.Hour * 24))
 }
 
-// GetWeek returns '一' if time is Monday
+// GetWeekday returns '一' if time is Monday
 func GetWeekday(date string) (string, error) {
 	// Convert date to RFC3339
 	if len(date) != 8 {

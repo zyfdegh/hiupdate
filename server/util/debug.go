@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-// print struct v as format json
+// PrintPretty prints struct v as format json
 func PrintPretty(v interface{}, mark string) (err error) {
 	fmt.Printf("*********%s\n", mark)
 	data, err := json.MarshalIndent(v, "", "  ")

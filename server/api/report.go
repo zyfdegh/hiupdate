@@ -10,6 +10,7 @@ import (
 	"github.com/zyfdegh/hiupdate/server/service"
 )
 
+// GetReport serves GET /report?date=20160825
 func GetReport(w http.ResponseWriter, req *http.Request) {
 	var date = req.FormValue("date")
 	report, err := service.GetReportText(date)

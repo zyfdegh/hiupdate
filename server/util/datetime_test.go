@@ -52,10 +52,10 @@ func TestGetWeekday(t *testing.T) {
 
 func TestSplitDate(t *testing.T) {
 	var cases = []struct {
-		date        string
-		expect_yyyy string
-		expect_mm   string
-		expect_dd   string
+		date       string
+		expectYyyy string
+		expectMm   string
+		expectDd   string
 	}{
 		{"20110823", "2011", "08", "23"},
 		{"20160821", "2016", "08", "21"},
@@ -64,11 +64,11 @@ func TestSplitDate(t *testing.T) {
 
 	for _, c := range cases {
 		//call
-		got_yyyy, got_mm, got_dd := SplitDate(c.date)
+		gotYyyy, gotMm, gotDd := SplitDate(c.date)
 		//assert
-		assert.Equal(t, c.expect_yyyy, got_yyyy)
-		assert.Equal(t, c.expect_mm, got_mm)
-		assert.Equal(t, c.expect_dd, got_dd)
+		assert.Equal(t, c.expectYyyy, gotYyyy)
+		assert.Equal(t, c.expectMm, gotMm)
+		assert.Equal(t, c.expectDd, gotDd)
 	}
 }
 

@@ -9,13 +9,18 @@ import (
 	"github.com/hashicorp/hcl"
 )
 
-const CONFIG_FILE = "./hiupdate.conf"
+// ConfigFile is default config file path
+const ConfigFile = "./hiupdate.conf"
 
 var (
-	once         sync.Once
+	once sync.Once
+
+	// OptionsReady is a loaded object containing fields in config file.
+	// Using defaults if not set.
 	OptionsReady = &Options{}
 )
 
+// Options is the structure for config file.
 type Options struct {
 	Port   int    `hcl:"port"`
 	DBFile string `hcl:"db"`
@@ -34,19 +39,19 @@ func init() {
 	})
 }
 
-// New returns new config
+// NewOptions returns new config
 func NewOptions() *Options {
 	return &Options{}
 }
 
 // Load loads options from config file
 func (p *Options) Load() error {
-	if _, err := os.Stat(CONFIG_FILE); os.IsNotExist(err) {
+	if _, err := os.Stat(ConfigFile); os.IsNotExist(err) {
 		log.Printf("stat config file error: %v", err)
 		return err
 	}
 
-	content, err := ioutil.ReadFile(CONFIG_FILE)
+	content, err := ioutil.ReadFile(ConfigFile)
 	if err != nil {
 		log.Printf("read config file error: %v", err)
 		return err

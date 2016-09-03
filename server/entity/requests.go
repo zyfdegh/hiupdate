@@ -1,6 +1,6 @@
 package entity
 
-// Req to /record
+// ReqRecord is the request to PUT /record
 type ReqRecord struct {
 	Name  string `json:"name"`
 	Done  string `json:"done"`

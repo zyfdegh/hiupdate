@@ -31,6 +31,7 @@ func GetRecords(date string) (records []entity.Record, err error) {
 	return records, nil
 }
 
+// GetYesterdayRecord returns someone's yesterday record
 func GetYesterdayRecord(name string) (resp *entity.RespGetRecord, err error) {
 	return GetRecord(name, util.GetYesterday())
 }
@@ -45,6 +46,7 @@ func checkReqGetRecord(name, date string) (errmsg string) {
 	return ""
 }
 
+// GetRecord returns someone's startup record on someday
 func GetRecord(name, date string) (resp *entity.RespGetRecord, err error) {
 	resp = &entity.RespGetRecord{}
 	errmsg := checkReqGetRecord(name, date)
@@ -78,6 +80,7 @@ func checkReqPutRecord(req *entity.ReqRecord) string {
 	return ""
 }
 
+// PutRecord check request and save record
 func PutRecord(req *entity.ReqRecord) (resp *entity.RespPutRecord, err error) {
 	resp = &entity.RespPutRecord{}
 

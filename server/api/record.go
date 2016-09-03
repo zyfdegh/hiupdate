@@ -12,7 +12,7 @@ import (
 	"github.com/zyfdegh/hiupdate/server/service"
 )
 
-// GET /record?name="Zhang"
+// GetRecord serves GET /record?name="Zhang"
 func GetRecord(w http.ResponseWriter, req *http.Request) {
 	var name = req.FormValue("name")
 	var date = req.FormValue("date")
@@ -33,7 +33,7 @@ func GetRecord(w http.ResponseWriter, req *http.Request) {
 	io.WriteString(w, string(body))
 }
 
-// PUT /record
+// PutRecord servers PUT /record
 // Body entity.ReqRecord
 func PutRecord(w http.ResponseWriter, req *http.Request) {
 	var reqRecord = &entity.ReqRecord{}

@@ -9,12 +9,13 @@ import (
 	"github.com/zyfdegh/hiupdate/server/entity"
 )
 
-const FILE_PERSONS_LIST = "./persons.list"
+// FilePersonsList is path to persons.list
+const FilePersonsList = "./persons.list"
 
-// Read file and return persons
+// GetAllPersons read persons.list file and return persons
 func GetAllPersons() (persons []entity.Person, err error) {
 	persons = make([]entity.Person, 20)
-	lines, err := readPersonsList(FILE_PERSONS_LIST)
+	lines, err := readPersonsList(FilePersonsList)
 	if err != nil {
 		log.Printf("read persons list error: %v", err)
 		return

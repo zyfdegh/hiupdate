@@ -7,5 +7,6 @@ install:
         - ./getdep.sh
         - ./test.sh
         - ./build.sh
+        - ./format.sh
         - ./run.sh
 
