@@ -7,8 +7,8 @@
 <script>
 	var baseUrl ="http://"+location.host;
 	$(document).ready(function() {
-		// GET /report?date=20160825
 		$("#btn_gen").on("click", function() {
+			// GET /report?date=20160825
 			var yyyy=document.cal.YYYY.value;
 			var mm=addZero(document.cal.MM.value);
 			var dd=addZero(document.cal.DD.value);
@@ -27,6 +27,27 @@
 		           	console.log(JSON.stringify(result))
 				}
 		    });
+			
+			// GET /persons/forgot?date=20160825
+			$.ajax({
+				url:baseUrl+"/persons/forgot/",
+				type:'GET',
+				timeout : 5000,
+				data: {date:date},
+				contentType: "application/json",
+				dataType: 'json',
+				success: function (result) {
+					var forgot = ""
+					for(i in result.data){
+						forgot+=result.data[i]
+						forgot+=", "
+					}
+					document.getElementById("t_forgot").innerText = forgot
+		          	},
+		           error: function () {
+		           	console.log(JSON.stringify(result))
+				}
+			});
 		});
 		
 		// copy
@@ -67,6 +88,9 @@
 	<div>
 		<button id="btn_gen" class="btn btn-large">生成</button>
 		<button id="btn_copy" class="btn btn-large">复制全部</button>
+	</div>
+	<div>
+		未填写:<span id="t_forgot" style="color:Red">无</span>
 	</div>
 	<div>
 		<textarea id="t_report" class="form-control" rows="30">Report</textarea>

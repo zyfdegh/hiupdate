@@ -18,3 +18,9 @@ type RespGetRecord struct {
 	Resp
 	Data Record `json:"data"`
 }
+
+// RespForgotPersons is the response to GET /persons/forgot
+type RespForgotPersons struct {
+	Resp
+	Data []string `json:"data"`
+}
