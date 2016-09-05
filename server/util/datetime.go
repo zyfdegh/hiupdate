@@ -62,14 +62,14 @@ func SplitDate(date string) (yyyy, mm, dd string) {
 	return
 }
 
-// FormatDate format date with seperator
+// FormatDate format date with separator
 // 20160902 -> 2016-09-02
-func FormatDate(date string, seperator string) string {
+func FormatDate(date string, separator string) string {
 	if len(date) != 8 {
 		return ""
 	}
 
 	y, m, d := SplitDate(date)
 
-	return strings.Join([]string{y, m, d}, seperator)
+	return strings.Join([]string{y, m, d}, separator)
 }

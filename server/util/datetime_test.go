@@ -75,7 +75,7 @@ func TestSplitDate(t *testing.T) {
 func TestFormatDate(t *testing.T) {
 	var cases = []struct {
 		date      string
-		seperator string
+		separator string
 		expect    string
 	}{
 		{"20110823", "-", "2011-08-23"},
@@ -85,7 +85,7 @@ func TestFormatDate(t *testing.T) {
 
 	for _, c := range cases {
 		//call
-		got := FormatDate(c.date, c.seperator)
+		got := FormatDate(c.date, c.separator)
 		//assert
 		assert.Equal(t, c.expect, got)
 	}
