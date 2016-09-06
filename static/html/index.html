@@ -20,6 +20,11 @@
 <script>
 	var baseUrl ="http://"+location.host;
 	$(document).ready(function() {
+		// Monday is a little different
+		if (isMonday()){
+			document.getElementById("box_done").value = "上周:";
+		}
+		
 		// trigger queryRecord
 		queryRecord();
 
@@ -51,16 +56,19 @@
 	// query record
 	function queryRecord(){
 		var name = document.getElementById("s_name").value;
-		var yesterday = getYesterday();
+		var date = getYesterday();
+		if (isMonday()){
+			date = getLastFriday();
+		}
 		$.ajax({
 			url:baseUrl+"/record/",
 			type:'GET',
 			timeout : 5000,
-			data: {name:name,date:yesterday},
+			data: {name:name,date:date},
 			contentType: "application/json",
 			dataType: 'json',
 			success: function (result) {
-				// get yesterday's todo and set as today's done
+				// get previous record's todo and set as today's done
 				document.getElementById("box_done").value = result.data.content.todo;
 			},
 			error: function () {
@@ -96,7 +104,7 @@
 	    </select>   
 	</div>
 	<div>
-		<p id="t_done">昨天:</p>
+		<span id="t_done">昨天:</span>
 		<textarea class="form-control" rows="5" id="box_done" type="text"></textarea>
 	<div>
 		<p>今天:</p>
