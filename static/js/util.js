@@ -10,3 +10,18 @@ function copy(id){
 	e.select();
 	document.execCommand("Copy");
 }
+
+// get yesterday today in 20160906
+function getYesterday(){
+	return getDate(-1);
+}
+
+// get date in 20160906, days is a interger number of offset
+function getDate(days){
+	var dd = new Date();
+	dd.setDate(dd.getDate()+days);
+	var y = dd.getFullYear();
+	var m = dd.getMonth()+1;
+	var d = dd.getDate();
+	return y + addZero(m) + addZero(d);
+}

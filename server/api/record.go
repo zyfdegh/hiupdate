@@ -12,7 +12,7 @@ import (
 	"github.com/zyfdegh/hiupdate/server/service"
 )
 
-// GetRecord serves GET /record?name="Zhang"
+// GetRecord serves GET /record?name=ZhangSan&date=20160906
 func GetRecord(w http.ResponseWriter, req *http.Request) {
 	var name = req.FormValue("name")
 	var date = req.FormValue("date")

@@ -41,7 +41,7 @@ func checkReqGetRecord(name, date string) (errmsg string) {
 		return "name not set"
 	}
 	if len(strings.TrimSpace(date)) == 0 {
-		return "name not set"
+		return "date not set"
 	}
 	return ""
 }
